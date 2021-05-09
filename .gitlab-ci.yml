@@ -1,0 +1,7 @@
+include:
+  - template: Terraform.latest.gitlab-ci.yml
+
+variables:
+  TF_STATE_NAME: ${CI_COMMIT_REF_SLUG}
+  TF_CACHE_KEY: ${CI_COMMIT_REF_SLUG}
+  TF_ROOT: terraform/prod
