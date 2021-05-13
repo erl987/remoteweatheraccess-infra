@@ -15,7 +15,7 @@ stages:
 
 before_script:
   - if [ ${CI_COMMIT_REF_NAME} == master ];
-    then source environments/.master.env;
+    then source environments/.production.env;
     else source environments/.testing.env;
     fi
 
