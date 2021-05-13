@@ -40,6 +40,8 @@ deploy staging environment:
   only:
     - branches
     - tags
+  except:
+    - master
 
 deploy production environment:
   stage: deploy infrastructure
@@ -61,3 +63,5 @@ cleanup:
   only:
     - branches
     - tags
+  except:
+    - master
