@@ -54,7 +54,7 @@ deploy production environment:
 deploy app:
   stage: deploy app
   trigger:
-    project: weathernetwork/weatherstation
+    project: weathernetwork/app
     branch: master
   only:
     - master
