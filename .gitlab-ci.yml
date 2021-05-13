@@ -51,14 +51,6 @@ deploy production environment:
   only:
     - master
 
-deploy app:
-  stage: deploy app
-  trigger:
-    project: weathernetwork/app
-    branch: master
-  only:
-    - master
-
 cleanup:
   extends: .destroy
   only:
