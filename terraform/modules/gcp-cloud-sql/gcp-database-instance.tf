@@ -25,4 +25,8 @@ resource "google_sql_database_instance" "weather-database-instance" {
       update_track = "stable"
     }
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }

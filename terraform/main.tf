@@ -31,12 +31,12 @@ provider "google" {
 }
 
 module "gcp_api_activation" {
-  source = "../modules/gcp-api-activation"
+  source = "./modules/gcp-api-activation"
   project_id = var.gcp_project_id
 }
 
 module "gcp_cloud_sql" {
-  source = "../modules/gcp-cloud-sql"
+  source = "./modules/gcp-cloud-sql"
   region = var.gcp_region
   database_version = var.gcp_database_version
   sql_backup_region = var.gcp_sql_backup_region
@@ -45,7 +45,7 @@ module "gcp_cloud_sql" {
 }
 
 module "gcp_secret_manager" {
-  source = "../modules/gcp-secret-manager"
+  source = "./modules/gcp-secret-manager"
   region = var.gcp_region
   user-db-password = module.gcp_cloud_sql.user-db-password
   weatherdata-db-password = module.gcp_cloud_sql.weatherdata-db-password
@@ -53,6 +53,6 @@ module "gcp_secret_manager" {
 }
 
 module "gcp_service_accounts" {
-  source = "../modules/gcp-service-accounts"
+  source = "./modules/gcp-service-accounts"
   project_id = var.gcp_project_id
 }
