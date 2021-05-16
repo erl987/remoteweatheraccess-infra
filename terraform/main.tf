@@ -16,11 +16,25 @@ terraform {
 }
 
 # provided as environment variables `TF_VAR_gcp_project_id`, etc. in Gitlab
-variable "gcp_project_id" {}
-variable "gcp_region" {}
-variable "gcp_database_version" {}
-variable "gcp_sql_backup_region" {}
-variable "gcp_database_tier" {}
+variable "gcp_project_id" {
+  description = "The GCP project id where the application will be deployed"
+}
+variable "gcp_region" {
+  description = "The GCP region where the application will be deployed"
+  type = string
+}
+variable "gcp_database_version" {
+  description = "The Postgres database version for the weather database. The choice depends on the availability in GCP"
+  type = string
+}
+variable "gcp_sql_backup_region" {
+  description = "GCP region (or multi-region) for the database backup"
+  type = string
+}
+variable "gcp_database_tier" {
+  description = "The machine type used for the database. Must be a GCP-machine type available for Cloud SQL"
+  type = string
+}
 
 provider "random" {}
 
