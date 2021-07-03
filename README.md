@@ -3,6 +3,7 @@
 This project is providing the infrastructure as-code in Google Cloud Platform (GCP) for the weather server
 components. The infrastructure is automatically deployed by GitLab CI/CD using Terraform.
 
+
 # Seed project
 
 The infrastructure will be deployed into a separate GCP-project, it needs however a service account that has all
@@ -49,3 +50,20 @@ A number of variables need to be defined to configure the CI/CD pipeline:
 | **TF_VAR_GCP_DATABASE_VERSION**    | POSTGRES_13               | the SQL database version            |
 | **GCP_REGION_ID**                  | europe-west3              | the GCP region of deployment        |
 | **TF_VAR_GCP_SQL_BACKUP_REGION**   | eu                        | the GCP SQL backup region           |
+
+
+# License
+
+Remote Weather Access - Client/server solution for distributed weather networks Copyright (C) 2013-2021 Ralf Rettig (
+info@personalfme.de)
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public
+License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License along with this program. If not,
+see <https://www.gnu.org/licenses/>.
