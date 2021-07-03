@@ -26,15 +26,15 @@ The *seed project* requires the same APIs being activated as the project running
 
 ## Usage
 
-By committing to *branches* or *tags* of this repository, the infrastructure is deployed to the *testing project* in GCP. If
-committing to the *main branch*, the infrastructure of the *production project* is deployed.
+By committing to *branches* or *tags* of this repository, the infrastructure is deployed to the *testing project* in
+GCP. If committing to the *main branch*, the infrastructure of the *production project* is deployed.
 
 The infrastructure-as-code description is providing the complete infrastructure required by the weather server
 components. They can be deployed directly in these projects using the GitLab CI/CD of their subproject.
 
 ## Destruction of the testing infrastructure
 
-The *testing infrastructure* only can be destructed by the running the respective job in its pipeline.
+The *testing infrastructure* can only be destructed by running the respective job in its pipeline.
 
 ## Required GitLab CI/CD variables
 
@@ -42,10 +42,10 @@ A number of variables need to be defined to configure the CI/CD pipeline:
 
 | Variable                           | Example value             | Description                         |
 |------------------------------------|---------------------------|-------------------------------------| 
-| **gcp_project_id_production**      | weather-production-123456 | the GCP production project ID       |
-| **gcp_project_id_testing**         | weather-testing-123456    | the GCP testing project ID          |
+| **GCP_PROJECT_ID_PRODUCTION**      | weather-production-123456 | the GCP production project ID       |
+| **GCP_PROJECT_ID_TESTING**         | weather-testing-123456    | the GCP testing project ID          |
 | **GOOGLE_APPLICATION_CREDENTIALS** | a JSON object             | the GCP service account credentials |
-| **TF_VAR_gcp_database_tier**       | db-f1-micro               | the SQL database machine type       |
-| **TF_VAR_gcp_database_version**    | POSTGRES_13               | the SQL database version            |
-| **TF_VAR_gcp_region**              | europe-west3              | the GCP region of deployment        |
-| **TF_VAR_gcp_sql_backup_region**   | eu                        | the GCP SQL backup region           |
+| **TF_VAR_GCP_DATABASE_TIER**       | db-f1-micro               | the SQL database machine type       |
+| **TF_VAR_GCP_DATABASE_VERSION**    | POSTGRES_13               | the SQL database version            |
+| **GCP_REGION_ID**                  | europe-west3              | the GCP region of deployment        |
+| **TF_VAR_GCP_SQL_BACKUP_REGION**   | eu                        | the GCP SQL backup region           |
