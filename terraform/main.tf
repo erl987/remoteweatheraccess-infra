@@ -65,6 +65,12 @@ module "gcp_api_activation" {
   project_id = var.GCP_PROJECT_ID
 }
 
+module "gcp_app_engine" {
+  source = "./modules/gcp-app-engine"
+  region = var.GCP_REGION
+  project_id = var.GCP_PROJECT_ID
+}
+
 module "gcp_cloud_sql" {
   source = "./modules/gcp-cloud-sql"
   region = var.GCP_REGION
@@ -82,7 +88,15 @@ module "gcp_secret_manager" {
   depends_on = [module.gcp_api_activation]
 }
 
+module "gcp_cloud_storage" {
+  source = "./modules/gcp-cloud-storage"
+  region = var.GCP_REGION
+  project_id = var.GCP_PROJECT_ID
+  depends_on = [module.gcp_api_activation]
+}
+
 module "gcp_service_accounts" {
   source = "./modules/gcp-service-accounts"
   project_id = var.GCP_PROJECT_ID
+  export_data_bucket_name = module.gcp_cloud_storage.export-data-bucket-name
 }

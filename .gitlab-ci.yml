@@ -15,7 +15,7 @@
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 include:
-  - template: Terraform.latest.gitlab-ci.yml
+  - template: Terraform.gitlab-ci.yml
 
 image:
   name: registry.gitlab.com/gitlab-org/terraform-images/releases/0.15:v0.12.0

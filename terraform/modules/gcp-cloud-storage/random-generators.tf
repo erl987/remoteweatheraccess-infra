@@ -14,12 +14,7 @@
 #   You should have received a copy of the GNU Affero General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-variable "project_id" {
-  description = "The GCP project where the application will be deployed"
-  type = string
-}
-
-variable "export_data_bucket_name" {
-  description = "The name of the bucket containing the exported weather data"
-  type = string
+resource "random_integer" "random-bucket-id" {
+  min = 100000
+  max = 999999
 }

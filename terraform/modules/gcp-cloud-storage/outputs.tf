@@ -14,12 +14,7 @@
 #   You should have received a copy of the GNU Affero General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-variable "project_id" {
-  description = "The GCP project where the application will be deployed"
-  type = string
-}
-
-variable "export_data_bucket_name" {
+output "export-data-bucket-name" {
   description = "The name of the bucket containing the exported weather data"
-  type = string
+  value = google_storage_bucket.weather-export-data-bucket.name
 }

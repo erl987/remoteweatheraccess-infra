@@ -23,3 +23,8 @@ resource "google_service_account" "backend-service-account" {
   account_id = "weather-backend"
   display_name = "Weather website backend"
 }
+
+resource "google_service_account" "exporter-service-account" {
+  account_id = "weather-exporter"
+  display_name = "Weather data file exporter"
+}
