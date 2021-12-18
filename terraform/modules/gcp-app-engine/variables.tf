@@ -19,7 +19,7 @@ variable "project_id" {
   type = string
 }
 
-variable "export_data_bucket_name" {
-  description = "The name of the bucket containing the exported weather data"
+variable "region" {
+  description = "The GCP region where the application will be deployed"
   type = string
 }

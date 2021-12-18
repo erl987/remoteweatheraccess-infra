@@ -24,6 +24,8 @@ The *seed project* requires the same APIs being activated as the project running
 * `containerregistry.googleapis.com`
 * `run.googleapis.com`
 * `sqladmin.googleapis.com`
+* `storage.googleapis.com`
+* `appengine.googleapis.com`
 
 ## Usage
 

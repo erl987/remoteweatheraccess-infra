@@ -33,3 +33,18 @@ resource "google_project_service" "cloud-sql-admin-api" {
   project = var.project_id
   service = "sqladmin.googleapis.com"
 }
+
+resource "google_project_service" "cloud-storage-api" {
+  project = var.project_id
+  service = "storage.googleapis.com"
+}
+
+resource "google_project_service" "app-engine-api" {
+  project = var.project_id
+  service = "appengine.googleapis.com"
+}
+
+resource "google_project_service" "cloud-scheduler-api" {
+  project = var.project_id
+  service = "cloudscheduler.googleapis.com"
+}

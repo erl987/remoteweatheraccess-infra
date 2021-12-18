@@ -19,7 +19,6 @@ resource "google_project_iam_binding" "service-account-secret-accessor-role" {
   role = "roles/secretmanager.secretAccessor"
 
   members = [
-    "serviceAccount:${google_service_account.frontend-service-account.email}",
     "serviceAccount:${google_service_account.backend-service-account.email}"]
 }
 
@@ -29,4 +28,20 @@ resource "google_project_iam_binding" "service-account-sql-client-role" {
 
   members = [
     "serviceAccount:${google_service_account.backend-service-account.email}"]
+}
+
+resource "google_project_iam_binding" "service-account-cloud-storage-role" {
+  project = var.project_id
+  role = "roles/storage.admin"
+
+  members = [
+    "serviceAccount:${google_service_account.exporter-service-account.email}"]
+}
+
+resource "google_storage_bucket_iam_binding" "public-cloud-storage-role" {
+  bucket = var.export_data_bucket_name
+  role = "roles/storage.objectViewer"
+
+  members = [
+    "allUsers"]
 }
