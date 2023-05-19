@@ -1,5 +1,5 @@
 #  Remote Weather Access - Client/server solution for distributed weather networks
-#   Copyright (C) 2013-2021 Ralf Rettig (info@personalfme.de)
+#   Copyright (C) 2013-2023 Ralf Rettig (info@personalfme.de)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -15,12 +15,17 @@
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 resource "random_password" "random-user-db-password" {
-  length = 20
+  length  = 20
   special = true
 }
 
 resource "random_password" "random-weatherdata-db-password" {
-  length = 20
+  length  = 20
+  special = true
+}
+
+resource "random_password" "random-frontend-db-password" {
+  length  = 20
   special = true
 }
 

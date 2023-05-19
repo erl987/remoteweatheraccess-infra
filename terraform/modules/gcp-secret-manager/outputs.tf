@@ -14,47 +14,27 @@
 #   You should have received a copy of the GNU Affero General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-variable "project_id" {
-  description = "The GCP project where the application will be deployed"
-  type        = string
-}
-
-variable "project_number" {
-  description = "The GCP project number where the application will be deployed"
-  type        = string
-}
-
-variable "export_data_bucket_name" {
-  description = "The name of the bucket containing the exported weather data"
-  type        = string
-}
-
-variable "frontend_static_bucket_name" {
-  description = "The name of the bucket containing the static files of the frontend"
-  type        = string
-}
-
-variable "frontend-settings-secret-id" {
+output "frontend-settings-secret-id" {
   description = "The id of the secret containing the frontend settings"
-  type        = string
+  value       = google_secret_manager_secret.secret-frontend-settings.secret_id
 }
 
-variable "frontend-db-password-secret-id" {
+output "frontend-db-password-secret-id" {
   description = "The id of the secret containing the frontend database password"
-  type        = string
+  value       = google_secret_manager_secret.secret-frontend-db-password.secret_id
 }
 
-variable "user-db-password-secret-id" {
+output "user-db-password-secret-id" {
   description = "The id of the secret containing the user database password"
-  type        = string
+  value       = google_secret_manager_secret.secret-user-db-password.secret_id
 }
 
-variable "weather-db-password-secret-id" {
+output "weather-db-password-secret-id" {
   description = "The id of the secret containing the weather database password"
-  type        = string
+  value       = google_secret_manager_secret.secret-weather-db-password.secret_id
 }
 
-variable "jwt-secret-key-secret-id" {
+output "jwt-secret-key-secret-id" {
   description = "The id of the secret containing the JWT secret key"
-  type        = string
+  value       = google_secret_manager_secret.secret-jwt-secret-key.secret_id
 }

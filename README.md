@@ -18,6 +18,8 @@ the following roles:
 * `Storage Admin`
 * `Viewer`
 
+This service account requires the same permissions also for the *GCP-project containing the infrastructure*. 
+
 The *seed project* requires the same APIs being activated as the project running the server components. These are:
 
 * `secretmanager.googleapis.com`
@@ -26,6 +28,7 @@ The *seed project* requires the same APIs being activated as the project running
 * `sqladmin.googleapis.com`
 * `storage.googleapis.com`
 * `appengine.googleapis.com`
+* `cloudbuild.googleapis.com`
 
 ## Usage
 
@@ -56,7 +59,7 @@ A number of variables need to be defined to configure the CI/CD pipeline:
 
 # License
 
-Remote Weather Access - Client/server solution for distributed weather networks Copyright (C) 2013-2021 Ralf Rettig (
+Remote Weather Access - Client/server solution for distributed weather networks Copyright (C) 2013-2023 Ralf Rettig (
 info@personalfme.de)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public

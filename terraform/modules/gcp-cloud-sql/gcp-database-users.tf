@@ -1,5 +1,5 @@
 #  Remote Weather Access - Client/server solution for distributed weather networks
-#   Copyright (C) 2013-2021 Ralf Rettig (info@personalfme.de)
+#   Copyright (C) 2013-2023 Ralf Rettig (info@personalfme.de)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -16,7 +16,7 @@
 
 resource "google_sql_user" "users-database-user" {
   instance = google_sql_database_instance.weather-database-instance.name
-  name = "userdb"
+  name     = "userdb"
   password = random_password.random-user-db-password.result
 
   lifecycle {
@@ -26,8 +26,18 @@ resource "google_sql_user" "users-database-user" {
 
 resource "google_sql_user" "weather-data-database-user" {
   instance = google_sql_database_instance.weather-database-instance.name
-  name = "weatherdatadb"
+  name     = "weatherdatadb"
   password = random_password.random-weatherdata-db-password.result
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "google_sql_user" "frontend-database-user" {
+  instance = google_sql_database_instance.weather-database-instance.name
+  name     = "frontend_db"
+  password = random_password.random-frontend-db-password.result
 
   lifecycle {
     prevent_destroy = true

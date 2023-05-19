@@ -1,5 +1,5 @@
 #  Remote Weather Access - Client/server solution for distributed weather networks
-#   Copyright (C) 2013-2021 Ralf Rettig (info@personalfme.de)
+#   Copyright (C) 2013-2023 Ralf Rettig (info@personalfme.de)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,20 @@
 
 variable "region" {
   description = "The GCP region where the application will be deployed"
-  type = string
+  type        = string
 }
 
 variable "database_version" {
   description = "The Postgres database version for the weather database. The choice depends on the availability in GCP"
-  type = string
+  type        = string
 }
 
 variable "sql_backup_region" {
   description = "GCP region (or multi-region) for the database backup"
-  type = string
+  type        = string
 }
 
 variable "database_tier" {
   description = "The machine type used for the database. Must be a GCP-machine type available for Cloud SQL"
-  type = string
+  type        = string
 }

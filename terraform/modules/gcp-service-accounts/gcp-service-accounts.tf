@@ -1,5 +1,5 @@
 #  Remote Weather Access - Client/server solution for distributed weather networks
-#   Copyright (C) 2013-2021 Ralf Rettig (info@personalfme.de)
+#   Copyright (C) 2013-2023 Ralf Rettig (info@personalfme.de)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -15,16 +15,16 @@
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 resource "google_service_account" "frontend-service-account" {
-  account_id = "weather-frontend"
+  account_id   = "weather-frontend"
   display_name = "Weather website frontend"
 }
 
 resource "google_service_account" "backend-service-account" {
-  account_id = "weather-backend"
+  account_id   = "weather-backend"
   display_name = "Weather website backend"
 }
 
 resource "google_service_account" "exporter-service-account" {
-  account_id = "weather-exporter"
+  account_id   = "weather-exporter"
   display_name = "Weather data file exporter"
 }

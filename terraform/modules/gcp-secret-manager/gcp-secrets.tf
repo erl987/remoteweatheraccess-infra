@@ -1,5 +1,5 @@
 #  Remote Weather Access - Client/server solution for distributed weather networks
-#   Copyright (C) 2013-2021 Ralf Rettig (info@personalfme.de)
+#   Copyright (C) 2013-2023 Ralf Rettig (info@personalfme.de)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -51,6 +51,38 @@ resource "google_secret_manager_secret" "secret-weather-db-password" {
 
   labels = {
     tier = "backend"
+  }
+
+  replication {
+    user_managed {
+      replicas {
+        location = var.region
+      }
+    }
+  }
+}
+
+resource "google_secret_manager_secret" "secret-frontend-db-password" {
+  secret_id = "frontend-db-password"
+
+  labels = {
+    tier = "frontend"
+  }
+
+  replication {
+    user_managed {
+      replicas {
+        location = var.region
+      }
+    }
+  }
+}
+
+resource "google_secret_manager_secret" "secret-frontend-settings" {
+  secret_id = "frontend-settings"
+
+  labels = {
+    tier = "frontend"
   }
 
   replication {

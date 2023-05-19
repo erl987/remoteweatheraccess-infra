@@ -1,5 +1,5 @@
 #  Remote Weather Access - Client/server solution for distributed weather networks
-#   Copyright (C) 2013-2021 Ralf Rettig (info@personalfme.de)
+#   Copyright (C) 2013-2023 Ralf Rettig (info@personalfme.de)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -16,5 +16,10 @@
 
 output "export-data-bucket-name" {
   description = "The name of the bucket containing the exported weather data"
-  value = google_storage_bucket.weather-export-data-bucket.name
+  value       = google_storage_bucket.weather-export-data-bucket.name
+}
+
+output "frontend-static-bucket-name" {
+  description = "The name of the bucket containing the static files of the frontend"
+  value       = google_storage_bucket.frontend-static-bucket.name
 }

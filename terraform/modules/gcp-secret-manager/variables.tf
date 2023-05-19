@@ -1,5 +1,5 @@
 #  Remote Weather Access - Client/server solution for distributed weather networks
-#   Copyright (C) 2013-2021 Ralf Rettig (info@personalfme.de)
+#   Copyright (C) 2013-2023 Ralf Rettig (info@personalfme.de)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,20 @@
 
 variable "region" {
   description = "The GCP region where the application will be deployed"
-  type = string
+  type        = string
 }
 
 variable "user-db-password" {
   description = "The password for the `userdb` user of the database"
-  type = string
+  type        = string
 }
 
 variable "weatherdata-db-password" {
   description = "The password for the `weatherdatadb` user of the database"
-  type = string
+  type        = string
+}
+
+variable "frontend-db-password" {
+  description = "The password for the `frontend_db` user of the database"
+  type        = string
 }

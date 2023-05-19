@@ -1,5 +1,5 @@
 #  Remote Weather Access - Client/server solution for distributed weather networks
-#   Copyright (C) 2013-2021 Ralf Rettig (info@personalfme.de)
+#   Copyright (C) 2013-2023 Ralf Rettig (info@personalfme.de)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -14,34 +14,104 @@
 #   You should have received a copy of the GNU Affero General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-resource "google_project_iam_binding" "service-account-secret-accessor-role" {
-  project = var.project_id
-  role = "roles/secretmanager.secretAccessor"
+resource "google_secret_manager_secret_iam_member" "weather-db-password-secret-backend-service-account-binding" {
+  project   = var.project_id
+  secret_id = var.weather-db-password-secret-id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${google_service_account.backend-service-account.email}"
+}
 
-  members = [
-    "serviceAccount:${google_service_account.backend-service-account.email}"]
+resource "google_secret_manager_secret_iam_member" "user-db-password-secret-backend-service-account-binding" {
+  project   = var.project_id
+  secret_id = var.user-db-password-secret-id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${google_service_account.backend-service-account.email}"
+}
+
+resource "google_secret_manager_secret_iam_member" "jwt-secret-key-secret-backend-service-account-binding" {
+  project   = var.project_id
+  secret_id = var.jwt-secret-key-secret-id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${google_service_account.backend-service-account.email}"
+}
+
+resource "google_secret_manager_secret_iam_member" "frontend-db-password-secret-frontend-service-account-binding" {
+  project   = var.project_id
+  secret_id = var.frontend-db-password-secret-id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${google_service_account.frontend-service-account.email}"
+}
+
+resource "google_secret_manager_secret_iam_member" "frontend-db-password-secret-cloud-build-service-account-binding" {
+  project   = var.project_id
+  secret_id = var.frontend-db-password-secret-id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${var.project_number}@cloudbuild.gserviceaccount.com"
+}
+
+resource "google_secret_manager_secret_iam_member" "frontend-settings-secret-frontend-service-account-binding" {
+  project   = var.project_id
+  secret_id = var.frontend-settings-secret-id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${google_service_account.frontend-service-account.email}"
+}
+
+resource "google_secret_manager_secret_iam_member" "frontend-settings-secret-cloud-build-service-account-binding" {
+  project   = var.project_id
+  secret_id = var.frontend-settings-secret-id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${var.project_number}@cloudbuild.gserviceaccount.com"
 }
 
 resource "google_project_iam_binding" "service-account-sql-client-role" {
   project = var.project_id
-  role = "roles/cloudsql.client"
+  role    = "roles/cloudsql.client"
 
   members = [
-    "serviceAccount:${google_service_account.backend-service-account.email}"]
+    "serviceAccount:${google_service_account.backend-service-account.email}",
+    "serviceAccount:${google_service_account.frontend-service-account.email}",
+    "serviceAccount:${var.project_number}@cloudbuild.gserviceaccount.com"
+  ]
 }
 
-resource "google_project_iam_binding" "service-account-cloud-storage-role" {
-  project = var.project_id
-  role = "roles/storage.admin"
-
-  members = [
-    "serviceAccount:${google_service_account.exporter-service-account.email}"]
-}
-
-resource "google_storage_bucket_iam_binding" "public-cloud-storage-role" {
+resource "google_storage_bucket_iam_member" "exporter-bucket-service-account-binding" {
   bucket = var.export_data_bucket_name
-  role = "roles/storage.objectViewer"
+  role   = "roles/storage.objectCreator"
+  member = "serviceAccount:${google_service_account.exporter-service-account.email}"
+}
+
+resource "google_project_iam_binding" "service-account-cloud-run-viewer-role" {
+  project = var.project_id
+  role    = "roles/run.viewer"
 
   members = [
-    "allUsers"]
+    "serviceAccount:${google_service_account.frontend-service-account.email}"
+  ]
+}
+
+resource "google_storage_bucket_iam_binding" "public-cloud-export-data-storage-role" {
+  bucket = var.export_data_bucket_name
+  role   = "roles/storage.objectViewer"
+
+  members = [
+    "allUsers"
+  ]
+}
+
+resource "google_storage_bucket_iam_binding" "public-cloud-frontend-static-storage-role" {
+  bucket = var.frontend_static_bucket_name
+  role   = "roles/storage.objectViewer"
+
+  members = [
+    "allUsers"
+  ]
+}
+
+resource "google_project_iam_binding" "frontend-log-writer-role" {
+  project = var.project_id
+  role    = "roles/logging.logWriter"
+
+  members = [
+    "serviceAccount:${google_service_account.frontend-service-account.email}",
+  ]
 }

@@ -1,5 +1,5 @@
 #  Remote Weather Access - Client/server solution for distributed weather networks
-#   Copyright (C) 2013-2021 Ralf Rettig (info@personalfme.de)
+#   Copyright (C) 2013-2023 Ralf Rettig (info@personalfme.de)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -47,4 +47,9 @@ resource "google_project_service" "app-engine-api" {
 resource "google_project_service" "cloud-scheduler-api" {
   project = var.project_id
   service = "cloudscheduler.googleapis.com"
+}
+
+resource "google_project_service" "cloud-build-api" {
+  project = var.project_id
+  service = "cloudbuild.googleapis.com"
 }

@@ -1,5 +1,5 @@
 #  Remote Weather Access - Client/server solution for distributed weather networks
-#   Copyright (C) 2013-2021 Ralf Rettig (info@personalfme.de)
+#   Copyright (C) 2013-2023 Ralf Rettig (info@personalfme.de)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -17,60 +17,27 @@
 include:
   - template: Terraform.gitlab-ci.yml
 
-image:
-  name: registry.gitlab.com/gitlab-org/terraform-images/releases/0.15:v0.12.0
-
-stages:
-  - init
-  - validate
-  - build
-  - deploy
-  - deploy infrastructure
-  - deploy app
-  - cleanup
-
-before_script:
-  - if [ ${CI_COMMIT_REF_NAME} == master ];
-    then source environments/.production.env;
-    else source environments/.testing.env;
-    fi
-
 variables:
   TF_ROOT: terraform
 
-# disable the pre-defined deploy job
+default:
+  before_script:
+    - if [ ${CI_COMMIT_BRANCH} == ${CI_DEFAULT_BRANCH} ];
+      then source environments/.production.env;
+      else source environments/.testing.env;
+      fi
+
 deploy:
-  extends: .deploy
-  dependencies:
-    - build
-  only:
-    - never
-
-deploy staging environment:
-  stage: deploy infrastructure
-  extends: .deploy
-  dependencies:
-    - build
-  when: on_success
-  allow_failure: false
-  only:
-    - branches
-    - tags
-  except:
-    - master
-
-deploy production environment:
-  stage: deploy infrastructure
-  extends: .deploy
-  dependencies:
-    - build
-  only:
-    - master
+  extends: .terraform:deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
+    - if: $CI_PIPELINE_SOURCE == "push"
+      when: on_success
 
 cleanup:
-  extends: .destroy
-  only:
-    - branches
-    - tags
-  except:
-    - master
+  extends: .terraform:destroy
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push"
