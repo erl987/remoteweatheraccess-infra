@@ -76,7 +76,7 @@ resource "google_project_iam_binding" "service-account-sql-client-role" {
 
 resource "google_storage_bucket_iam_member" "exporter-bucket-service-account-binding" {
   bucket = var.export_data_bucket_name
-  role   = "roles/storage.objectCreator"
+  role   = "roles/storage.objectAdmin"
   member = "serviceAccount:${google_service_account.exporter-service-account.email}"
 }
 
