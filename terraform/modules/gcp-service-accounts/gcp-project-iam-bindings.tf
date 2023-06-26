@@ -74,10 +74,16 @@ resource "google_project_iam_binding" "service-account-sql-client-role" {
   ]
 }
 
-resource "google_storage_bucket_iam_member" "exporter-bucket-service-account-binding" {
+resource "google_storage_bucket_iam_member" "exporter-bucket-exporter-service-account-binding" {
   bucket = var.export_data_bucket_name
   role   = "roles/storage.objectAdmin"
   member = "serviceAccount:${google_service_account.exporter-service-account.email}"
+}
+
+resource "google_storage_bucket_iam_member" "exporter-bucket-frontend-service-account-binding" {
+  bucket = var.export_data_bucket_name
+  role   = "roles/storage.objectViewer"
+  member = "serviceAccount:${google_service_account.frontend-service-account.email}"
 }
 
 resource "google_project_iam_binding" "service-account-cloud-run-viewer-role" {
@@ -86,15 +92,6 @@ resource "google_project_iam_binding" "service-account-cloud-run-viewer-role" {
 
   members = [
     "serviceAccount:${google_service_account.frontend-service-account.email}"
-  ]
-}
-
-resource "google_storage_bucket_iam_binding" "public-cloud-export-data-storage-role" {
-  bucket = var.export_data_bucket_name
-  role   = "roles/storage.objectViewer"
-
-  members = [
-    "allUsers"
   ]
 }
 
