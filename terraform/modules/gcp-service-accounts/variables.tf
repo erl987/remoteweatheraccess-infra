@@ -34,8 +34,8 @@ variable "frontend_static_bucket_name" {
   type        = string
 }
 
-variable "frontend-settings-secret-id" {
-  description = "The id of the secret containing the frontend settings"
+variable "django-secret-key-secret-id" {
+  description = "The id of the secret containing the Django secret key"
   type        = string
 }
 

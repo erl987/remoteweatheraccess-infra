@@ -33,3 +33,8 @@ resource "google_secret_manager_secret_version" "secret-version-frontend-db-pass
   secret      = google_secret_manager_secret.secret-frontend-db-password.id
   secret_data = var.frontend-db-password
 }
+
+resource "google_secret_manager_secret_version" "secret-version-django-secret-key" {
+  secret      = google_secret_manager_secret.secret-django-secret-key.id
+  secret_data = random_password.random-django-secret-key.result
+}
