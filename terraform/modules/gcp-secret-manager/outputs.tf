@@ -14,9 +14,9 @@
 #   You should have received a copy of the GNU Affero General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-output "frontend-settings-secret-id" {
-  description = "The id of the secret containing the frontend settings"
-  value       = google_secret_manager_secret.secret-frontend-settings.secret_id
+output "django-secret-key-secret-id" {
+  description = "The id of the secret containing the Django secret key"
+  value       = google_secret_manager_secret.secret-django-secret-key.secret_id
 }
 
 output "frontend-db-password-secret-id" {

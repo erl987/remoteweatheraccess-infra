@@ -49,16 +49,16 @@ resource "google_secret_manager_secret_iam_member" "frontend-db-password-secret-
   member    = "serviceAccount:${var.project_number}@cloudbuild.gserviceaccount.com"
 }
 
-resource "google_secret_manager_secret_iam_member" "frontend-settings-secret-frontend-service-account-binding" {
+resource "google_secret_manager_secret_iam_member" "django-secret-key-secret-frontend-service-account-binding" {
   project   = var.project_id
-  secret_id = var.frontend-settings-secret-id
+  secret_id = var.django-secret-key-secret-id
   role      = "roles/secretmanager.secretAccessor"
   member    = "serviceAccount:${google_service_account.frontend-service-account.email}"
 }
 
-resource "google_secret_manager_secret_iam_member" "frontend-settings-secret-cloud-build-service-account-binding" {
+resource "google_secret_manager_secret_iam_member" "django-secret-key-secret-cloud-build-service-account-binding" {
   project   = var.project_id
-  secret_id = var.frontend-settings-secret-id
+  secret_id = var.django-secret-key-secret-id
   role      = "roles/secretmanager.secretAccessor"
   member    = "serviceAccount:${var.project_number}@cloudbuild.gserviceaccount.com"
 }

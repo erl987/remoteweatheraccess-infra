@@ -18,3 +18,8 @@ resource "random_password" "random-jwt-secret-key" {
   length  = 232
   special = true
 }
+
+resource "random_password" "random-django-secret-key" {
+  length  = 232
+  special = false
+}

@@ -78,8 +78,8 @@ resource "google_secret_manager_secret" "secret-frontend-db-password" {
   }
 }
 
-resource "google_secret_manager_secret" "secret-frontend-settings" {
-  secret_id = "frontend-settings"
+resource "google_secret_manager_secret" "secret-django-secret-key" {
+  secret_id = "django-secret-key"
 
   labels = {
     tier = "frontend"

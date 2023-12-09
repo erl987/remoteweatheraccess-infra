@@ -105,7 +105,7 @@ module "gcp_service_accounts" {
   project_number                 = var.GCP_PROJECT_NUMBER
   export_data_bucket_name        = module.gcp_cloud_storage.export-data-bucket-name
   frontend_static_bucket_name    = module.gcp_cloud_storage.frontend-static-bucket-name
-  frontend-settings-secret-id    = module.gcp_secret_manager.frontend-settings-secret-id
+  django-secret-key-secret-id    = module.gcp_secret_manager.django-secret-key-secret-id
   frontend-db-password-secret-id = module.gcp_secret_manager.frontend-db-password-secret-id
   user-db-password-secret-id     = module.gcp_secret_manager.user-db-password-secret-id
   weather-db-password-secret-id  = module.gcp_secret_manager.weather-db-password-secret-id
