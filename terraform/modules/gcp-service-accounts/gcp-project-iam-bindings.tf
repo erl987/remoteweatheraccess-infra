@@ -110,5 +110,6 @@ resource "google_project_iam_binding" "frontend-log-writer-role" {
 
   members = [
     "serviceAccount:${google_service_account.frontend-service-account.email}",
+    "serviceAccount:${google_service_account.exporter-service-account.email}",
   ]
 }
