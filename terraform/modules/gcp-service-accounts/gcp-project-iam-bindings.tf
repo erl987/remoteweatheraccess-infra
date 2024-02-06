@@ -104,13 +104,22 @@ resource "google_storage_bucket_iam_binding" "public-cloud-frontend-static-stora
   ]
 }
 
-resource "google_project_iam_binding" "frontend-log-writer-role" {
+resource "google_project_iam_binding" "log-writer-role" {
   project = var.project_id
   role    = "roles/logging.logWriter"
 
   members = [
     "serviceAccount:${google_service_account.frontend-service-account.email}",
     "serviceAccount:${google_service_account.backend-service-account.email}",
+    "serviceAccount:${google_service_account.exporter-service-account.email}",
+  ]
+}
+
+resource "google_project_iam_binding" "exporter-error-reporting-writer-role" {
+  project = var.project_id
+  role    = "roles/errorreporting.writer"
+
+  members = [
     "serviceAccount:${google_service_account.exporter-service-account.email}",
   ]
 }
