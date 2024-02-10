@@ -32,5 +32,6 @@ resource "null_resource" "resource-to-wait-on" {
     google_project_service.app-engine-api,
     google_project_service.cloud-scheduler-api,
     google_project_service.cloud-build-api,
+    google_project_service.cloud-error-reporting-api
   ]
 }
