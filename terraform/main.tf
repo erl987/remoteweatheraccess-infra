@@ -18,12 +18,12 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "3.66.1"
+      version = "5.36.0"
     }
 
     random = {
       source  = "hashicorp/random"
-      version = "3.1.0"
+      version = "3.6.2"
     }
   }
 
@@ -72,6 +72,13 @@ module "gcp_app_engine" {
   source     = "./modules/gcp-app-engine"
   region     = var.GCP_REGION
   project_id = var.GCP_PROJECT_ID
+}
+
+module "gcp_artifact_registry" {
+  source     = "./modules/gcp-artifact-registry"
+  region     = var.GCP_REGION
+  project_id = var.GCP_PROJECT_ID
+  depends_on = [module.gcp_api_activation]
 }
 
 module "gcp_cloud_sql" {

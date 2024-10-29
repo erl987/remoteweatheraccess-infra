@@ -19,6 +19,11 @@ resource "google_project_service" "secret-manager-api" {
   service = "secretmanager.googleapis.com"
 }
 
+resource "google_project_service" "artifact-registry-api" {
+  project = var.project_id
+  service = "artifactregistry.googleapis.com"
+}
+
 resource "google_project_service" "container-registry-api" {
   project = var.project_id
   service = "containerregistry.googleapis.com"
