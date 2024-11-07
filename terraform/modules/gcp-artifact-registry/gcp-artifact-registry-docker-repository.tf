@@ -1,8 +1,8 @@
-resource "google_artifact_registry_repository" "web-app-docker-repo" {
+resource "google_artifact_registry_repository" "backend-docker-repo" {
   location               = var.region
   project                = var.project_id
-  repository_id          = "webapp"
-  description            = "The web app containers"
+  repository_id          = "backend"
+  description            = "The backend containers"
   format                 = "DOCKER"
   cleanup_policy_dry_run = false
   cleanup_policies {
