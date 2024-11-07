@@ -42,6 +42,10 @@ variable "GCP_REGION" {
   description = "The GCP region where the application will be deployed"
   type        = string
 }
+variable "GCP_FRONTEND_REGION" {
+  description = "The GCP region where the frontend will be deployed"
+  type        = string
+}
 variable "GCP_DATABASE_VERSION" {
   description = "The Postgres database version for the weather database. The choice depends on the availability in GCP"
   type        = string
@@ -75,9 +79,10 @@ module "gcp_app_engine" {
 }
 
 module "gcp_artifact_registry" {
-  source     = "./modules/gcp-artifact-registry"
-  region     = var.GCP_REGION
-  project_id = var.GCP_PROJECT_ID
+  source          = "./modules/gcp-artifact-registry"
+  region          = var.GCP_REGION
+  frontend_region = var.GCP_FRONTEND_REGION
+  project_id      = var.GCP_PROJECT_ID
   depends_on = [module.gcp_api_activation]
 }
 
