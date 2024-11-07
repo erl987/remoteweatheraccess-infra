@@ -23,7 +23,7 @@ This service account requires the same permissions also for the *GCP-project con
 The *seed project* requires the same APIs being activated as the project running the server components. These are:
 
 * `secretmanager.googleapis.com`
-* `containerregistry.googleapis.com`
+* `artifactregistry.googleapis.com`
 * `run.googleapis.com`
 * `sqladmin.googleapis.com`
 * `storage.googleapis.com`
@@ -46,20 +46,21 @@ The *testing infrastructure* can only be destructed by running the respective jo
 
 A number of variables need to be defined to configure the CI/CD pipeline:
 
-| Variable                           | Example value             | Description                         |
-|------------------------------------|---------------------------|-------------------------------------| 
-| **GCP_PROJECT_ID_PRODUCTION**      | weather-production-123456 | the GCP production project ID       |
-| **GCP_PROJECT_ID_TESTING**         | weather-testing-123456    | the GCP testing project ID          |
-| **GOOGLE_APPLICATION_CREDENTIALS** | a JSON object             | the GCP service account credentials |
-| **TF_VAR_GCP_DATABASE_TIER**       | db-f1-micro               | the SQL database machine type       |
-| **TF_VAR_GCP_DATABASE_VERSION**    | POSTGRES_13               | the SQL database version            |
-| **GCP_REGION_ID**                  | europe-west3              | the GCP region of deployment        |
-| **TF_VAR_GCP_SQL_BACKUP_REGION**   | eu                        | the GCP SQL backup region           |
+| Variable                           | Example value             | Description                           |
+|------------------------------------|---------------------------|---------------------------------------| 
+| **GCP_PROJECT_ID_PRODUCTION**      | weather-production-123456 | the GCP production project ID         |
+| **GCP_PROJECT_ID_TESTING**         | weather-testing-123456    | the GCP testing project ID            |
+| **GOOGLE_APPLICATION_CREDENTIALS** | a JSON object             | the GCP service account credentials   |
+| **TF_VAR_GCP_DATABASE_TIER**       | db-f1-micro               | the SQL database machine type         |
+| **TF_VAR_GCP_DATABASE_VERSION**    | POSTGRES_13               | the SQL database version              |
+| **GCP_REGION_ID**                  | europe-west3              | the GCP region of deployment          |
+| **GCP_FRONTEND_REGION_ID**         | europe-west3              | the GCP region of frontend deployment |
+| **TF_VAR_GCP_SQL_BACKUP_REGION**   | eu                        | the GCP SQL backup region             |
 
 
 # License
 
-Remote Weather Access - Client/server solution for distributed weather networks Copyright (C) 2013-2023 Ralf Rettig (
+Remote Weather Access - Client/server solution for distributed weather networks Copyright (C) 2013-2024 Ralf Rettig (
 info@personalfme.de)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public
