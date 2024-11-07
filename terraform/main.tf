@@ -83,7 +83,7 @@ module "gcp_artifact_registry" {
   region          = var.GCP_REGION
   frontend_region = var.GCP_FRONTEND_REGION
   project_id      = var.GCP_PROJECT_ID
-  depends_on = [module.gcp_api_activation]
+  depends_on      = [module.gcp_api_activation]
 }
 
 module "gcp_cloud_sql" {
