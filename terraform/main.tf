@@ -1,5 +1,5 @@
 #  Remote Weather Access - Client/server solution for distributed weather networks
-#   Copyright (C) 2013-2023 Ralf Rettig (info@personalfme.de)
+#   Copyright (C) 2013-2024 Ralf Rettig (info@personalfme.de)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -42,6 +42,10 @@ variable "GCP_REGION" {
   description = "The GCP region where the application will be deployed"
   type        = string
 }
+variable "GCP_FRONTEND_REGION" {
+  description = "The GCP region where the frontend will be deployed"
+  type        = string
+}
 variable "GCP_DATABASE_VERSION" {
   description = "The Postgres database version for the weather database. The choice depends on the availability in GCP"
   type        = string
@@ -75,10 +79,11 @@ module "gcp_app_engine" {
 }
 
 module "gcp_artifact_registry" {
-  source     = "./modules/gcp-artifact-registry"
-  region     = var.GCP_REGION
-  project_id = var.GCP_PROJECT_ID
-  depends_on = [module.gcp_api_activation]
+  source          = "./modules/gcp-artifact-registry"
+  region          = var.GCP_REGION
+  frontend_region = var.GCP_FRONTEND_REGION
+  project_id      = var.GCP_PROJECT_ID
+  depends_on      = [module.gcp_api_activation]
 }
 
 module "gcp_cloud_sql" {
