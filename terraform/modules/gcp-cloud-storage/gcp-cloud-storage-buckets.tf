@@ -31,7 +31,7 @@ resource "google_storage_bucket" "frontend-static-bucket" {
 }
 
 resource "google_storage_bucket" "cloud-build-bucket" {
-  name = format("cloud-build-%s", tostring(random_integer.random-bucket-id.result))
+  name     = format("cloud-build-%s", tostring(random_integer.random-bucket-id.result))
   location = var.region
   project  = var.project_id
 
