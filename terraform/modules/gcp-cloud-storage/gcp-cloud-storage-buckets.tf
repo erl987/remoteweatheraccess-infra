@@ -29,3 +29,20 @@ resource "google_storage_bucket" "frontend-static-bucket" {
 
   uniform_bucket_level_access = true
 }
+
+resource "google_storage_bucket" "cloud-build-bucket" {
+  name     = format("cloud-build-%s", tostring(random_integer.random-bucket-id.result))
+  location = var.region
+  project  = var.project_id
+
+  uniform_bucket_level_access = true
+
+  lifecycle_rule {
+    action {
+      type = "Delete"
+    }
+    condition {
+      age = 1
+    }
+  }
+}
