@@ -16,6 +16,7 @@ the following roles:
 * `Editor`
 * `Cloud Run Admin`
 * `Storage Admin`
+* `Artifact Registry Reader`
 * `Viewer`
 
 This service account requires the same permissions also for the *GCP-project containing the infrastructure*. 
